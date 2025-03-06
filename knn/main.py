@@ -12,7 +12,7 @@ random.seed(seed)
 np.random.seed(seed)
 os.environ["PYTHONHASHSEED"] = str(seed)
 
-df = pd.read_csv("data/train.csv")
+df = pd.read_csv("../data/train.csv")
 
 features = ['N', 'P', 'K', 'temperature', 'humidity', 'ph', 'rainfall']
 target = 'label'
@@ -45,13 +45,13 @@ y_test_pred = best_knn.predict(X_test_std)
 f1_test = f1_score(y_test, y_test_pred, average='macro')
 print("F1-score на валидационной выборке: {:.5f}".format(f1_test))
 
-test_df = pd.read_csv("data/test.csv")
+test_df = pd.read_csv("../data/test.csv")
 X_test = test_df[features]
 X_test_std = scaler.transform(X_test)
 
 test_pred = best_knn.predict(X_test_std)
 
-submission = pd.read_csv("data/sample_submit.csv")
+submission = pd.read_csv("../data/sample_submit.csv")
 
 submission['label'] = test_pred
 
